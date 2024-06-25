@@ -1,0 +1,67 @@
+<div class="example-container" [class.example-is-mobile]="mobileQuery.matches">
+
+      <mat-toolbar   class="example-toolbar ">
+
+        @if (mobileQuery.matches) {
+          <button mat-icon-button  (click)="toggleSidenav()">
+              <mat-icon style="color: white;">menu</mat-icon>
+            </button>
+        }
+        <h1 class="example-app-name">Hola Zeballos</h1>
+      </mat-toolbar>
+
+
+    <mat-sidenav-container class="example-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
+      <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'"
+                   [opened]="!mobileQuery.matches"
+                   [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
+        <mat-nav-list class="example-mat-nav-list">
+          <div class="container-profile">
+            <div class="container-image-profile">
+              <img src="../../../../../assets/images/image-profile-zeballos.jpg" alt="img del perfil">
+            </div>
+            <a class="item-profile" routerLink="/dashboard-admin/information-admin">Mi perfil</a>
+          </div>
+
+          <a class="item-list" routerLink="/admin/all-clients"
+             routerLinkActive="activebutton"
+             [routerLinkActiveOptions]="{exact:true}">
+            <i class="fa-solid fa-people-group"></i>
+            Mis clientes
+          </a>
+
+          <a class="item-list" routerLink="/admin/register-client"
+             routerLinkActive="activebutton"
+             [routerLinkActiveOptions]="{exact:true}">
+            <i class="fa-solid fa-id-card"></i>
+            Registrar cliente
+          </a>
+
+          <a  class="item-list" routerLink="/admin/products"
+             routerLinkActive="activebutton"
+             [routerLinkActiveOptions]="{exact:true}">
+            <i class="fa-solid fa-store"></i>
+            Productos
+          </a>
+
+          <div class="container-logout" alt>
+            <a class="item-list-logout" (click)="logout()">
+              <i class="fa-solid fa-sign-out"></i>
+              Salir
+            </a>
+          </div>
+
+
+        </mat-nav-list>
+      </mat-sidenav>
+
+      <mat-sidenav-content class="content-shadow" style="background-color: white;" >
+       
+       
+        <div class="content-wrapper" >
+           <router-outlet></router-outlet>
+       </div>       
+
+      </mat-sidenav-content>
+    </mat-sidenav-container>
+  </div>
